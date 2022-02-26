@@ -9,6 +9,6 @@ public class HugTest extends BaseTest {
         loginSteps.open()
                 .validLogin()
                 .isHomeOpened()
-                .hug("Stars");
+                .hug("Lacey");
     }
 }

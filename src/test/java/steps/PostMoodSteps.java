@@ -15,21 +15,14 @@ public class PostMoodSteps extends AbstractSteps {
     public static final String POST_MOOD_BUTTON_XPATH = "//a[contains(.,'Update to')]";
     public static final String TEXT_AREA_CSS = "textarea.textarea";
 
-    public PostMoodSteps open() {
-        openPage(
-                PostPageConstants.URN,
-                TITLE_CSS,
-                Condition.text(PostPageConstants.TITLE_TEXT)
-        );
-        return this;
-    }
 
+    @Step("Check Post page is loaded")
     public PostMoodSteps isPostPageOpened() {
         $(TITLE_CSS).shouldHave(Condition.text(PostPageConstants.TITLE_TEXT));
         return this;
     }
 
-    @Step
+    @Step("Select any mood")
     public PostMoodSteps selectMood(int mood) {
         assert (0 <= mood) && (mood <= 10);
         String xpath = String.format(MOOD_BUTTON_XPATH_PATTERN, mood);
@@ -43,13 +36,13 @@ public class PostMoodSteps extends AbstractSteps {
         return this;
     }
 
-    @Step
+    @Step("Describe any text for mood")
     public PostMoodSteps describeMood(String text) {
         $(TEXT_AREA_CSS).sendKeys(text);
         return this;
     }
 
-    @Step
+    @Step("Click 'Post' button that sent mood")
     public HomePageSteps postMood() {
         $x(POST_MOOD_BUTTON_XPATH).click();
         return new HomePageSteps();

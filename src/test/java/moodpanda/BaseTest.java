@@ -4,9 +4,11 @@ import com.codeborne.selenide.Configuration;
 import constants.DomainConstants;
 import constants.WindowSizeConstants;
 import models.WindowsSize;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import steps.AuthenticationSteps;
 
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class BaseTest {
 
@@ -14,7 +16,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setup()  {
-        Configuration.headless = false;
+        Configuration.headless = true;
         Configuration.browser = "chrome";
         Configuration.baseUrl = DomainConstants.BASE_URL;
         configureWindowSizeDependencies(WindowSizeConstants.SMALL_SIZE);
@@ -22,7 +24,7 @@ public class BaseTest {
         loginSteps = new AuthenticationSteps();
 
         /*ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--disable-popup");
+        chroOptions.addArguments("--disable-popup");
         WebDriver driver = new ChromeDriver(chromeOptions);
         setWebDriver(driver);*/
     }
@@ -32,5 +34,10 @@ public class BaseTest {
         System.setProperty("HOME_PAGE_TITLE_CSS", windowSize.getElementClass());
         System.setProperty("HOME_POST_BUTTON_CSS", windowSize.getPostButton());
         System.setProperty("DASHBOARD_PAGE_TITLE_CSS", windowSize.getElementClass());
+    }
+
+    @AfterMethod
+    public void teardown(){
+        getWebDriver().quit();
     }
 }

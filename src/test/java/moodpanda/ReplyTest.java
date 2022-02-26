@@ -9,6 +9,6 @@ public class ReplyTest extends BaseTest{
         loginSteps.open()
                 .validLogin()
                 .isHomeOpened()
-                .reply("Stars", "AQA-10");
+                .reply("Lacey", "AQA-10");
     }
 }

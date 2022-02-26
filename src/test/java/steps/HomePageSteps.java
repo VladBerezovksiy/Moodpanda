@@ -4,6 +4,9 @@ import com.codeborne.selenide.Condition;
 import constants.DashboardPageConstants;
 import constants.HomePageConstants;
 import constants.PostPageConstants;
+import io.qameta.allure.Step;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -36,16 +39,19 @@ public class HomePageSteps extends AbstractSteps {
                     "//section[contains(@class,'notification')]//div[contains(@class,'is-light')]" +
                     "//div[@class='wrap' and contains(.,'%s')]";
 
+    @Step("Check Home page is loaded")
     public HomePageSteps isHomeOpened() {
-        $(TITLE_CSS).shouldHave(Condition.text(HomePageConstants.TITLE_TEXT));
+        $(TITLE_CSS).shouldHave(Condition.text(HomePageConstants.TITLE_TEXT), Duration.ofSeconds(8));
         $(TITLE_CSS).shouldBe(Condition.visible);
         return this;
     }
 
+    @Step("Click 'Hug' button by username")
     public void clickHug(String username) {
         $x(String.format(CARD_BUTTON_XPATH_PATTERN, username, "Hug")).click();
     }
 
+    @Step("Check 'Hug' button is sent")
     public void checkHugText(String username) {
         $x(String.format(CARD_BUTTON_XPATH_PATTERN, username, "Hug sent"))
                 .should(Condition.visible).shouldHave(Condition.text("Hug sent"));
@@ -56,12 +62,14 @@ public class HomePageSteps extends AbstractSteps {
         checkHugText(username);
     }
 
+    @Step("Click 'Reply' button by username")
     public void sentReply(String username, String text) {
         $x(String.format(CARD_BUTTON_XPATH_PATTERN, username, "Reply")).shouldBe(Condition.visible).click();
         $x(String.format(TEXTAREA_XPATH_PATTERN, username)).shouldBe(Condition.visible).sendKeys(text);
         $x(String.format(REPLY_BUTTON_XPATH_PATTERN, username, "Send")).shouldBe(Condition.visible).click();
     }
 
+    @Step("Check 'Reply' button is sent and contain valid text")
     public void checkReply(String username, String text) {
         $x(String.format(TEXT_REPLY_XPATH_PATTERN, username, text)).shouldHave(Condition.text(text));
     }
@@ -71,18 +79,21 @@ public class HomePageSteps extends AbstractSteps {
         checkReply(username, text);
     }
 
+    @Step("Open 'dashboard' in Menu")
     public DashboardPageSteps openDashboard() {
         $(MENU_BURGER_CSS).shouldBe(Condition.visible).click();
         $(MENU_LIST_DASHBOARD_CSS).shouldHave(Condition.visible).click();
         return new DashboardPageSteps();
     }
 
+    @Step("Click 'Post Update' button in Header")
     public PostMoodSteps postMoodInHeader() {
         $(MENU_BURGER_CSS).shouldBe(Condition.visible).click();
         $(MENU_LIST_POST_AN_UPDATE_CSS).shouldHave(Condition.visible).click();
         return new PostMoodSteps();
     }
 
+    @Step("Click 'Post Update' button")
     public PostMoodSteps postMood() {
         $(POST_BUTTON_CSS).click();
         return new PostMoodSteps();

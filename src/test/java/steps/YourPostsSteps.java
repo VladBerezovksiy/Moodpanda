@@ -15,12 +15,13 @@ public class YourPostsSteps extends AbstractSteps {
     public static final String DELETE_BUTTON =
             "//footer[@class='card-footer']//a[@class='dropdown-item' and contains(text(),'Delete')]";
 
+    @Step("Check 'Your posts' page is loaded")
     public YourPostsSteps isYourPostOpened() {
         $(TITLE_CSS).shouldHave(Condition.text(DashboardPostsPageConstants.TITLE_TEXT));
         return this;
     }
 
-    @Step
+    @Step("Delete post by username")
     public HomePageSteps deletePost(String text) {
         $x(String.format(POST_CARD_PATTERN_XPATH, text)).shouldBe(Condition.visible).click();
         $x(DELETE_BUTTON).shouldBe(Condition.visible).click();

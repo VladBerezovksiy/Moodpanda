@@ -3,6 +3,7 @@ package steps;
 import com.codeborne.selenide.Condition;
 import constants.DashboardPageConstants;
 import constants.DashboardPostsPageConstants;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -17,12 +18,14 @@ public class DashboardPageSteps extends AbstractSteps {
       YOUR_POST_BUTTON_CSS_PATTERN, DashboardPostsPageConstants.URN
     );
 
+    @Step("Check dashboard page is loaded")
     public DashboardPageSteps isDashboardOpened() {
         $(TITLE_CSS).shouldHave(Condition.text(DashboardPageConstants.TITLE_TEXT));
         $(TITLE_CSS).shouldBe(Condition.visible);
         return this;
     }
 
+    @Step("Choose 'Your posts' to delete post")
     public YourPostsSteps chooseYourPost() {
         $(BREAD_CRUMB_BUTTON_CSS).shouldBe(Condition.visible).click();
         $(YOUR_POST_BUTTON_CSS).click();

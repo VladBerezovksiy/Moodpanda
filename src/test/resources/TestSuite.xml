@@ -20,15 +20,6 @@
             </class>
         </classes>
     </test>
-    <test name="fPostUpdateTest">
-        <classes>
-            <class name="moodpanda.PostUpdateTest">
-                <methods>
-                    <include name="postUpdateTest"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
     <test name="cHugSomeone">
         <classes>
             <class name="moodpanda.HugTest">
@@ -43,6 +34,15 @@
             <class name="moodpanda.ReplyTest">
                 <methods>
                     <include name="replySomeoneTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="fPostUpdateTest">
+        <classes>
+            <class name="moodpanda.PostUpdateTest">
+                <methods>
+                    <include name="postUpdateTest"/>
                 </methods>
             </class>
         </classes>
