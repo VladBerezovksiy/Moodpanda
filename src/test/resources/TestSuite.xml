@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Saleforce">
+
+    <test name="aPostUpdateInHeaderTest">
+        <classes>
+            <class name="moodpanda.PostUpdateInHeaderTest">
+                <methods>
+                    <include name="postUpdateInHeaderTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="bPostDeleteTest">
+        <classes>
+            <class name="moodpanda.DeletePostTest">
+                <methods>
+                    <include name="postDeleteTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="cHugSomeone">
+        <classes>
+            <class name="moodpanda.HugTest">
+                <methods>
+                    <include name="hugSomeoneTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="dReplySomeoneTest">
+        <classes>
+            <class name="moodpanda.ReplyTest">
+                <methods>
+                    <include name="replySomeoneTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="fPostUpdateTest">
+        <classes>
+            <class name="moodpanda.PostUpdateTest">
+                <methods>
+                    <include name="postUpdateTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
